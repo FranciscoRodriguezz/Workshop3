@@ -1,20 +1,42 @@
-package EMBARCACION;
+package PARQUEADERO;
 
-import EMBARCACION.Capitan;
+
+
+
 
 public class Main {
     public static void main(String[] args) {
-        Capitan capitan1 = new Capitan("Juan", "Perez", "123ABC");
-        Velero velero1 = new Velero(capitan1, 1000, 200, 2022, 10.5, 5);
+        Parqueadero parqueadero = new Parqueadero(5, 10, 2.5);
 
-        Capitan capitan2 = new Capitan("Maria", "Gomez", "456XYZ");
-        Yate yate1 = new Yate(capitan2, 2000, 300, 2023, 15.0, 8);
+        Carro carro1 = new Carro("ABC123", "Toyota", "Corolla");
+        Carro carro2 = new Carro("DEF456", "Honda", "Civic");
+        Carro carro3 = new Carro("GHI789", "Ford", "Focus");
+        Carro carro4 = new Carro("JKL012", "Chevrolet", "Malibu");
+        Carro carro5 = new Carro("MNO345", "Nissan", "Altima");
 
-        System.out.println("Monto alquiler del velero: $" + velero1.calcularMontoAlquiler());
-        System.out.println("El velero es grande: " + velero1.esGrande());
+        // Estacionar carros en diferentes posiciones
+        parqueadero.parquearCarro(carro1, 0, 2);
+        parqueadero.parquearCarro(carro2, 2, 5);
+        parqueadero.parquearCarro(carro3, 1, 8);
+        parqueadero.parquearCarro(carro4, 3, 1);
 
-        System.out.println("Monto alquiler del yate: $" + yate1.calcularMontoAlquiler());
-        System.out.println("Se puede comprar el yate: " + yate1.sePuedeComprar());
+        // Intentar estacionar en un espacio ocupado
+        if (!parqueadero.parquearCarro(carro5, 1, 8)) {
+            System.out.println("No se pudo estacionar el carro5.");
+        }
+
+        // Calcular costos de estacionamiento
+        double costoCarro1 = parqueadero.cobrarPorTiempo(carro1, 3);
+        double costoCarro2 = parqueadero.cobrarPorTiempo(carro2, 5);
+        double costoCarro4 = parqueadero.cobrarPorTiempo(carro4, 2);
+
+        // Mostrar estado del parqueadero
+        parqueadero.mostrarEstadoParqueadero();
+
+        System.out.println("Costo para carro1: $" + costoCarro1);
+        System.out.println("Costo para carro2: $" + costoCarro2);
+        System.out.println("Costo para carro4: $" + costoCarro4);
     }
 }
+
 
